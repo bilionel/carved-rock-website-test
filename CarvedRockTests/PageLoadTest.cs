@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CarvedRockTests
 {
-    public class HomePageTest
+    public class PageLoadTest
     {
         public HttpClient HttpClient { get; set; }
 
@@ -15,10 +15,11 @@ namespace CarvedRockTests
             this.HttpClient = new HttpClient();
         }
 
-        [Test]
-        public async Task Homepage_Ok_Response_Code()
+        [TestCase("")]
+        [TestCase("contact")]
+        public async Task Homepage_Ok_Response_Code(string relativePath)
         {
-            var response = await this.HttpClient.GetAsync("http://ec2-18-133-221-163.eu-west-2.compute.amazonaws.com/");
+            var response = await this.HttpClient.GetAsync($"http://ec2-18-133-221-163.eu-west-2.compute.amazonaws.com/{relativePath}");
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
