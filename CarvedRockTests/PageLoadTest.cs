@@ -17,6 +17,7 @@ namespace CarvedRockTests
 
         [TestCase("")]
         [TestCase("contact")]
+        [TestCase("post/carabiners/")]
         public async Task Homepage_Ok_Response_Code(string relativePath)
         {
             var response = await this.HttpClient.GetAsync($"http://ec2-18-133-221-163.eu-west-2.compute.amazonaws.com/{relativePath}");
